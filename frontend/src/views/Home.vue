@@ -3,8 +3,8 @@
     <div class="container mt-5">
       <div class="level">
         <b-button icon-left="plus" @click="showNewNoteModal"
-          >Añadir Nota</b-button
-        >
+          >Añadir Nota
+        </b-button>
       </div>
       <div class="columns is-multiline">
         <div v-for="note in notes" :key="note.id" class="column is-half">
@@ -39,10 +39,18 @@ export default Vue.extend({
   } {
     return {
       modalOpen: false,
-      notes: this.$store.state.notes,
+      notes: [],
     };
   },
+  created() {
+    this.loadNotes();
+  },
   methods: {
+    loadNotes() {
+      this.$axios.get("/notes/").then((response) => {
+        this.notes = response.data;
+      });
+    },
     showNewNoteModal() {
       this.$buefy.modal.open({
         parent: this,
@@ -53,8 +61,8 @@ export default Vue.extend({
         width: "auto",
         trapFocus: true,
         events: {
-          sendNote: (note: NoteType) => {
-            this.$store.dispatch("addNote", note);
+          addedNote: () => {
+            this.loadNotes();
           },
         },
       });

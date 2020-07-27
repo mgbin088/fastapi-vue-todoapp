@@ -4,6 +4,7 @@ import Buefy from "buefy";
 import "./assets/scss/app.scss";
 import store from "@/store";
 import router from "./router";
+import "@/plugins/axios";
 
 Vue.use(Buefy);
 

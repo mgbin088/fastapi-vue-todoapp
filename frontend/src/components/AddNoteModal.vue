@@ -4,36 +4,11 @@
       <p class="modal-card-title">Anadir Nota</p>
     </header>
     <section class="modal-card-body">
-      <b-field label="ID">
-        <b-input v-model="note.id" required pattern="\d+"></b-input>
+      <b-field label="Título">
+        <b-input v-model="note.title" required />
       </b-field>
-
       <b-field label="Texto">
-        <b-input
-          v-model="note.text"
-          maxlength="200"
-          type="textarea"
-          required
-          pattern=".+"
-        ></b-input>
-      </b-field>
-
-      <div class="field">
-        <b-switch v-model="enableLimit">Fecha de vencimiento</b-switch>
-      </div>
-      <b-field label="Fecha de vencimiento">
-        <b-datetimepicker
-          v-model="date"
-          :disabled="!enableLimit"
-          rounded
-          placeholder="Clickea para seleccionar"
-          :min-datetime="minDatetime"
-          icon="calendar-today"
-          :timepicker="{ enableSeconds: true, hourFormat: '24' }"
-          horizontal-time-picker
-          :append-to-body="true"
-        >
-        </b-datetimepicker>
+        <b-input v-model="note.text" maxlength="200" type="textarea" required />
       </b-field>
     </section>
     <footer class="modal-card-foot">
@@ -62,10 +37,8 @@ export default Vue.extend({
   } {
     return {
       note: {
-        id: 0,
+        title: "",
         text: "",
-        completed: false,
-        limit: null,
       },
       enableLimit: false,
       date: new Date(),
@@ -74,11 +47,19 @@ export default Vue.extend({
   },
   methods: {
     saveNote() {
-      if (this.enableLimit) {
-        this.note.limit = Math.floor((this.date.getTime() - Date.now()) / 1000);
-      }
-      this.$emit("sendNote", this.note);
-      (this.$parent as BModalComponent).close();
+      this.$axios
+        .post("/users/1/notes", this.note)
+        .then((response) => {
+          if (response.status === 200) {
+            this.note = response.data;
+            this.$emit("addedNote");
+          } else {
+            alert("Error!");
+          }
+        })
+        .finally(() => {
+          (this.$parent as BModalComponent).close();
+        });
     },
   },
 });

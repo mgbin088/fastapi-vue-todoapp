@@ -1,6 +1,8 @@
 export interface NoteType {
   id: number;
+  owner_id: number;
+  title: string;
   text: string;
-  completed: boolean;
-  limit: null | number;
+  creation_datetime: string;
+  completion_datetime?: string;
 }

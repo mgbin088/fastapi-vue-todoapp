@@ -4,11 +4,20 @@ import uvicorn
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from starlette.authentication import AuthenticationError
+from fastapi.middleware.cors import CORSMiddleware
 
 from todoapp import crud, schemas
+from todoapp.config import settings
 from todoapp.database import SessionLocal
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.origins,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def get_db():
