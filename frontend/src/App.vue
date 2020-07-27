@@ -2,7 +2,7 @@
   <div id="app">
     <b-navbar type="is-dark" wrapper-class="container">
       <template slot="start">
-        <b-navbar-item href="#">
+        <b-navbar-item href="/">
           Home
         </b-navbar-item>
         <b-navbar-dropdown label="Info">
@@ -28,20 +28,17 @@
         </b-navbar-item>
       </template>
     </b-navbar>
-
     <section>
-      <home />
+      <router-view />
     </section>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import Home from "@/components/Home.vue";
 
 export default Vue.extend({
-  name: "App",
-  components: { Home }
+  name: "App"
 });
 </script>
 
