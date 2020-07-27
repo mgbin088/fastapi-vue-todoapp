@@ -39,26 +39,26 @@ export default Vue.extend({
   props: {
     id: {
       type: Number,
-      required: true
+      required: true,
     },
     text: {
       type: String,
-      required: true
+      required: true,
     },
     completed: {
       type: Boolean,
-      default: false
+      default: false,
     },
     limit: {
       type: Number,
-      default: 1
-    }
+      default: 1,
+    },
   },
   data(): {
     localLimit: number;
   } {
     return {
-      localLimit: this.$props.limit
+      localLimit: this.$props.limit,
     };
   },
   created() {
@@ -89,11 +89,11 @@ export default Vue.extend({
       router.push({
         name: "NoteDetail",
         params: {
-          id: this.$props.id
-        }
+          id: this.$props.id,
+        },
       });
-    }
-  }
+    },
+  },
 });
 </script>
 

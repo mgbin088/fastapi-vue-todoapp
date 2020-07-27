@@ -39,7 +39,7 @@ export default Vue.extend({
   } {
     return {
       modalOpen: false,
-      notes: this.$store.state.notes
+      notes: this.$store.state.notes,
     };
   },
   methods: {
@@ -55,11 +55,11 @@ export default Vue.extend({
         events: {
           sendNote: (note: NoteType) => {
             this.$store.dispatch("addNote", note);
-          }
-        }
+          },
+        },
       });
-    }
-  }
+    },
+  },
 });
 </script>
 

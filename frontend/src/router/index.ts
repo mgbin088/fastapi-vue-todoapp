@@ -11,19 +11,19 @@ const routes = [
   {
     path: "/detail/:id",
     name: "NoteDetail",
-    component: NoteDetails
+    component: NoteDetails,
   },
   {
     path: "/addnote/",
     name: "AddNote",
-    component: AddNote
-  }
+    component: AddNote,
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: routes
+  routes: routes,
 });
 
 export default router;

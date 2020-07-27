@@ -24,7 +24,7 @@ export default Vue.extend({
     note: NoteType;
   } {
     return {
-      note: {} as NoteType
+      note: {} as NoteType,
     };
   },
   created() {
@@ -34,7 +34,7 @@ export default Vue.extend({
     if (!this.note) {
       this.$router.push({ name: "Home" });
     }
-  }
+  },
 });
 </script>
 

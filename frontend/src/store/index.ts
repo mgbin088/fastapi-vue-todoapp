@@ -16,18 +16,18 @@ export default new Vuex.Store({
         id: 6,
         text: "Crear una máquina para viajar en el tiempo",
         completed: false,
-        limit: 0
-      }
-    ]
+        limit: 0,
+      },
+    ],
   },
   mutations: {
     addNote(state, note: NoteType) {
       state.notes.push(note);
-    }
+    },
   },
   actions: {
     addNote({ commit }, note: NoteType) {
       commit("addNote", note);
-    }
-  }
+    },
+  },
 });

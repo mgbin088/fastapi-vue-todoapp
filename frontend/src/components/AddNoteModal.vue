@@ -65,11 +65,11 @@ export default Vue.extend({
         id: 0,
         text: "",
         completed: false,
-        limit: null
+        limit: null,
       },
       enableLimit: false,
       date: new Date(),
-      minDatetime: new Date()
+      minDatetime: new Date(),
     };
   },
   methods: {
@@ -79,7 +79,7 @@ export default Vue.extend({
       }
       this.$emit("sendNote", this.note);
       (this.$parent as BModalComponent).close();
-    }
-  }
+    },
+  },
 });
 </script>
